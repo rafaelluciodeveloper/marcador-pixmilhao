@@ -14,18 +14,23 @@ Uma aplicação web simples para gerenciar seus números de sorteio e verificar 
 - **Importar**: Arraste o arquivo para a área de upload ou clique em "Selecionar Arquivo"
 
 ### 3. Verificar Sorteios
-- Selecione qual sorteio você quer verificar (1, 2 ou 3)
+- **Segunda-feira**: Sorteio 1
+- **Quarta-feira**: Sorteio 2  
+- **Sexta-feira**: Sorteio 3
+- A verificação só funciona no dia correto do sorteio
 - Digite os 7 números sorteados nos campos
 - Clique em "Verificar Se Ganhei"
 
 ## ✨ Funcionalidades
 
-- **Importação de números** via arquivo TXT
+- **Importação de números** via arquivo TXT ou RTF
 - **Drag and drop** para facilitar o upload
 - **Verificação automática** de números ganhadores
 - **Destaque visual** dos números ganhadores
 - **Salvamento automático** dos dados no navegador
 - **Interface responsiva** que funciona em celular e computador
+- **Controle de datas** dos sorteios (Segunda, Quarta, Sexta)
+- **Verificação apenas no dia correto** do sorteio
 
 ## 📱 Interface
 
