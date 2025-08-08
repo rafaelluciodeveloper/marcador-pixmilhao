@@ -14,7 +14,7 @@ function inicializarAplicacao() {
     configurarInputArquivo();
     configurarInputsSorteio();
     configurarBotaoVerificacao();
-    carregarDadosSalvos();
+    limparNumerosAoIniciar();
     atualizarProximosSorteios();
     popularComboSorteios();
 }
@@ -244,6 +244,15 @@ function salvarDados() {
         sorteios: sorteios
     };
     localStorage.setItem('marcadorSorteios', JSON.stringify(dados));
+}
+
+function limparNumerosAoIniciar() {
+    meusNumeros = [];
+    $('#numbersContainer').empty();
+    $('#numberCount').text('0');
+    $('#resultadoContainer').addClass('d-none');
+    $('#ganhadoresContainer').addClass('d-none');
+    $('.sorteio-input').val('');
 }
 
 function carregarDadosSalvos() {
