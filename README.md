@@ -11,7 +11,8 @@ Uma aplicação web simples para gerenciar seus números de sorteio e verificar 
 ## 🚀 Como Usar
 
 ### 1. Abrir a Aplicação
-- Abra o arquivo `index.html` em qualquer navegador moderno
+- Acesse a aplicação online: [https://rafaelluciodeveloper.github.io/marcador-pixmilhao/](https://rafaelluciodeveloper.github.io/marcador-pixmilhao/)
+- Ou abra o arquivo `index.html` em qualquer navegador moderno
 - A aplicação funciona completamente offline
 
 ### 2. Importar Seus Números
@@ -20,12 +21,10 @@ Uma aplicação web simples para gerenciar seus números de sorteio e verificar 
 - **Importar**: Arraste o arquivo para a área de upload ou clique em "Selecionar Arquivo"
 
 ### 3. Verificar Sorteios
-- **Segunda-feira**: Sorteio 1
-- **Quarta-feira**: Sorteio 2  
-- **Sexta-feira**: Sorteio 3
-- A verificação só funciona no dia correto do sorteio
-- Digite os 7 números sorteados nos campos
-- Clique em "Verificar Se Ganhei"
+- **Calendário da semana**: Mostra os sorteios da semana atual
+- **Digite os números**: 7 dígitos do número sorteado
+- **Clique em "Verificar Se Ganhei"**: Compara seus números com o sorteado
+- **Resultado**: Mostra se você ganhou ou não
 
 ## ✨ Funcionalidades
 
@@ -35,8 +34,8 @@ Uma aplicação web simples para gerenciar seus números de sorteio e verificar 
 - **Destaque visual** dos números ganhadores
 - **Salvamento automático** dos dados no navegador
 - **Interface responsiva** que funciona em celular e computador
-- **Controle de datas** dos sorteios (Segunda, Quarta, Sexta)
-- **Verificação apenas no dia correto** do sorteio
+- **Calendário da semana** com sorteios atuais
+- **Verificação simplificada** sem seleção de sorteio
 
 ## 📱 Interface
 
@@ -45,7 +44,7 @@ Uma aplicação web simples para gerenciar seus números de sorteio e verificar 
 - **Lista de números**: Visualização de todos os seus números importados
 
 ### Lado Direito
-- **Seleção de sorteio**: Escolha entre Sorteio 1, 2 ou 3
+- **Calendário da semana**: Mostra sorteios da semana atual
 - **Input de números**: 7 campos para digitar os números sorteados
 - **Resultado**: Mostra se você ganhou ou não
 
@@ -62,7 +61,8 @@ Crie um arquivo chamado `meus_numeros.txt` ou `meus_numeros.rtf` com o seguinte 
 - Os números devem ter exatamente 7 dígitos
 - Use apenas números (0-9)
 - Separe os números por ponto e vírgula (;)
-- A aplicação salva automaticamente seus dados
+- A aplicação salva automaticamente seus dados no navegador
+- Use o botão "Limpar Números" para remover todos os números
 - Você pode usar as setas do teclado para navegar entre os campos
 
 ## 🔧 Funções de Debug

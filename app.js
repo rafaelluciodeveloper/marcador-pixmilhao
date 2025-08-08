@@ -14,9 +14,8 @@ function inicializarAplicacao() {
     configurarInputArquivo();
     configurarInputsSorteio();
     configurarBotaoVerificacao();
-    limparNumerosAoIniciar();
+    carregarDadosSalvos();
     atualizarProximosSorteios();
-    popularComboSorteios();
 }
 
 function configurarDragAndDrop() {
@@ -91,24 +90,17 @@ function configurarInputsSorteio() {
 
 function configurarBotaoVerificacao() {
     $('#verificarBtn').on('click', function() {
-        const sorteioSelecionado = $('#sorteioSelect').val();
-        
-        if (!sorteioSelecionado) {
-            mostrarAlerta('Por favor, selecione um sorteio para verificar.', 'warning');
-            return;
-        }
-        
-        const [sorteioNum, dataSorteio, edicao] = sorteioSelecionado.split('|');
-        const hoje = new Date();
-        const dataSorteioObj = new Date(dataSorteio);
-        
-        if (dataSorteioObj.toDateString() !== hoje.toDateString()) {
-            const dataFormatada = dataSorteioObj.toLocaleDateString('pt-BR');
-            mostrarAlerta(`Este sorteio aconteceu em ${dataFormatada}. A verificação só é permitida no dia do sorteio.`, 'warning');
-            return;
-        }
-        
         verificarSorteio();
+    });
+    
+    $('#limparBtn').on('click', function() {
+        if (meusNumeros.length > 0) {
+            if (confirm('Tem certeza que deseja limpar todos os números?')) {
+                limparNumeros();
+            }
+        } else {
+            mostrarAlerta('Não há números para limpar.', 'info');
+        }
     });
 }
 
@@ -174,8 +166,6 @@ function exibirNumeros() {
 }
 
 function verificarSorteio() {
-    const sorteioSelecionado = $('#sorteioSelect').val();
-    const [sorteioNum, dataSorteio, edicao] = sorteioSelecionado.split('|');
     const inputs = $('.sorteio-input');
     let numeroSorteado = '';
     
@@ -193,10 +183,6 @@ function verificarSorteio() {
         return;
     }
     
-    const chaveSorteio = `${edicao}_${sorteioNum}_${dataSorteio}`;
-    sorteios[chaveSorteio] = numeroSorteado;
-    salvarDados();
-    
     const ganhadores = meusNumeros.filter(numero => numero === numeroSorteado);
     
     $('.number-card').removeClass('winner');
@@ -209,7 +195,7 @@ function verificarSorteio() {
         $('#ganhadoresContainer').removeClass('d-none');
         $('#resultadoContainer').addClass('d-none');
         $('#ganhadoresTexto').html(`
-            <p class="mb-2"><strong>Parabéns! Você ganhou na Edição ${edicao} - Sorteio ${sorteioNum}!</strong></p>
+            <p class="mb-2"><strong>Parabéns! Você ganhou!</strong></p>
             <p class="mb-0">Número ganhador: <strong>${numeroSorteado}</strong></p>
         `);
     } else {
@@ -246,13 +232,15 @@ function salvarDados() {
     localStorage.setItem('marcadorSorteios', JSON.stringify(dados));
 }
 
-function limparNumerosAoIniciar() {
+function limparNumeros() {
     meusNumeros = [];
     $('#numbersContainer').empty();
     $('#numberCount').text('0');
     $('#resultadoContainer').addClass('d-none');
     $('#ganhadoresContainer').addClass('d-none');
     $('.sorteio-input').val('');
+    salvarDados();
+    mostrarAlerta('Números limpos com sucesso!', 'success');
 }
 
 function carregarDadosSalvos() {
@@ -375,46 +363,7 @@ function atualizarProximosSorteios() {
     $('#proximosSorteios').html(html);
 }
 
-function popularComboSorteios() {
-    const hoje = new Date();
-    const combo = $('#sorteioSelect');
-    const edicaoAtual = calcularEdicaoAtual();
-    
-    combo.empty();
-    combo.append('<option value="">Selecione um sorteio...</option>');
-    
-    const edicao60Segunda = new Date(2025, 7, 4);
-    const dataLimite = new Date(hoje);
-    dataLimite.setDate(hoje.getDate() - 30);
-    
-    for (let edicao = edicaoAtual - 1; edicao >= 1; edicao--) {
-        const semanasAtras = edicaoAtual - edicao;
-        const segundaSemana = new Date(edicao60Segunda);
-        segundaSemana.setDate(edicao60Segunda.getDate() + (semanasAtras * 7));
-        
-        const datasSorteio = [
-            new Date(segundaSemana), // Segunda
-            new Date(segundaSemana.getTime() + 2 * 24 * 60 * 60 * 1000), // Quarta (+2 dias)
-            new Date(segundaSemana.getTime() + 4 * 24 * 60 * 60 * 1000)  // Sexta (+4 dias)
-        ];
-        
-        datasSorteio.forEach((dataSorteio, index) => {
-            if (dataSorteio >= dataLimite) {
-                const dataFormatada = dataSorteio.toLocaleDateString('pt-BR', {
-                    weekday: 'long',
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                });
-                
-                const valor = `${index + 1}|${dataSorteio.toISOString()}|${edicao}`;
-                const texto = `Edição ${edicao} - Sorteio ${index + 1} (${dataFormatada})`;
-                
-                combo.append(`<option value="${valor}">${texto}</option>`);
-            }
-        });
-    }
-}
+
 
 window.limparDados = limparDados;
 window.gerarNumerosExemplo = gerarNumerosExemplo; 
