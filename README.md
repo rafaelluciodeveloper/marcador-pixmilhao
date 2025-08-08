@@ -2,6 +2,12 @@
 
 Uma aplicação web simples para gerenciar seus números de sorteio e verificar se você ganhou!
 
+## 🌐 **Aplicação Online**
+
+**Acesse a aplicação em:** [https://rafaelluciodeveloper.github.io/marcador-pixmilhao/](https://rafaelluciodeveloper.github.io/marcador-pixmilhao/)
+
+---
+
 ## 🚀 Como Usar
 
 ### 1. Abrir a Aplicação
