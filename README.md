@@ -1,4 +1,4 @@
-# Marcador de Sorteios - PIX Milhão
+# Marcador de Sorteios - PIX do Milhão
 
 Uma aplicação web simples para gerenciar seus números de sorteio e verificar se você ganhou!
 
